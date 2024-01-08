@@ -22,12 +22,9 @@ namespace Data_Access_Layer.Models
         public string URL { get; set; }
 
         [Required]
-        public byte[] PasswordHash { get; set; }
+        public string PassWord { get; set; }
 
-        [Required]
-
-        public byte[] PasswordSalt { get; set; }
-
+        
         [Required]
 
         public string PasswordStrength { get; set;}

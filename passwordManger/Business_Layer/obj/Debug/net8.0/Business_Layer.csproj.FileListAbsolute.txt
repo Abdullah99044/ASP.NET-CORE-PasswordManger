@@ -10,3 +10,7 @@ C:\Users\kathi\Desktop\learning\passwordManger\ASP.NET-CORE-PasswordManger\passw
 C:\Users\kathi\Desktop\learning\passwordManger\ASP.NET-CORE-PasswordManger\passwordManger\Business_Layer\obj\Debug\net8.0\refint\Business_Layer.dll
 C:\Users\kathi\Desktop\learning\passwordManger\ASP.NET-CORE-PasswordManger\passwordManger\Business_Layer\obj\Debug\net8.0\Business_Layer.pdb
 C:\Users\kathi\Desktop\learning\passwordManger\ASP.NET-CORE-PasswordManger\passwordManger\Business_Layer\obj\Debug\net8.0\ref\Business_Layer.dll
+C:\Users\kathi\Desktop\learning\passwordManger\ASP.NET-CORE-PasswordManger\passwordManger\Business_Layer\bin\Debug\net8.0\Data_Access_Layer.dll
+C:\Users\kathi\Desktop\learning\passwordManger\ASP.NET-CORE-PasswordManger\passwordManger\Business_Layer\bin\Debug\net8.0\Data_Access_Layer.pdb
+C:\Users\kathi\Desktop\learning\passwordManger\ASP.NET-CORE-PasswordManger\passwordManger\Business_Layer\obj\Debug\net8.0\Business_Layer.csproj.AssemblyReference.cache
+C:\Users\kathi\Desktop\learning\passwordManger\ASP.NET-CORE-PasswordManger\passwordManger\Business_Layer\obj\Debug\net8.0\Business_Layer.csproj.CopyComplete

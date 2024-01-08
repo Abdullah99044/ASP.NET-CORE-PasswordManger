@@ -1,4 +1,6 @@
+using Business_Layer.Services;
 using Data_Access_Layer.Data;
+using Data_Access_Layer.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,11 +9,25 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
+//Add custom services
+
+builder.Services.AddTransient<IPassWordsRepo, PassWordsRepo>();
+ 
+builder.Services.AddScoped<IPassWordsServics , PassWordsServices>();
+
+
+//Add the database
+
 builder.Services.AddDbContext<ApplicationDbContext>( options => options.UseSqlServer(
 
     builder.Configuration.GetConnectionString("DefaultString")    
     
 ));
+
+
+//Add automapper
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 

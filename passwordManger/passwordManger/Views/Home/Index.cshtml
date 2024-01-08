@@ -1,4 +1,8 @@
-﻿@{
+﻿@using static passwordManger.Controllers.HomeController
+ 
+@model indexModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +10,81 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+<h2> Store a password : </h2> 
+ 
+<form asp-action="CreateNewPassword" method="post">
+
+   
+        <div class="form-group">
+            <label asp-for="createPassword.Name">Name:</label>
+            <input asp-for="createPassword.Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="createPassword.URL">URL:</label>
+            <input asp-for="createPassword.URL" class="form-control" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="createPassword.PassWord">Password:</label>
+        <input asp-for="createPassword.PassWord" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="createPassword.PasswordStrength">PasswordStrength:</label>
+            <input asp-for="createPassword.PasswordStrength" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+     
+
+</form>
+
+<h2>Your Passwords : </h2>
+
+<table class="table">
+    <thead>
+        <tr>
+          
+            <th>Name</th>
+            <th>URL</th>
+            <th>Password</th>
+            <th>PasswordStrength</th>
+            <th>update your password</th>
+            <th>Delete your password</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var password in Model.passwordDTOs)
+        {
+            <tr>
+
+                
+                <td>@password.Name</td>
+                <td><a href="https://@password.URL" target="_blank">@password.URL</a></td>
+                <td>@password.PassWord </td>
+                <td>@password.PasswordStrength</td>
+                <td> 
+                    
+                    <a asp-controller="Home" asp-action="UpdatePassword" asp-route-Id="@password.Id" class="btn btn-primary" >
+                        Update
+                    </a>
+
+                </td>
+                <td>
+                <form asp-action="DeletePassword" method="post">
+
+                        <input asp-for="createPassword.Id" type="hidden" value="@password.Id" />
+                        
+                    <button type="submit" class="btn btn-danger">Delete</button>
+
+                 </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
