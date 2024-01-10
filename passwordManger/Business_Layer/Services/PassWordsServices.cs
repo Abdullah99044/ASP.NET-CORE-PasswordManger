@@ -23,41 +23,41 @@ namespace Business_Layer.Services
 
 
         //This method get all user passwords
-        public async Task<List<passwords>> GetPasswords()
+        public  List<passwords>  GetPasswords()
         {
-            return await _repo.GetAllPasswords();
+            return   _repo.GetAllPasswords();
         }
 
         //This method insert user password
 
-        public async Task CreatePassword(passwords password)
+        public  void CreatePassword(passwords password)
         {
             
-            await _repo.CreatePassword(password);
+              _repo.CreatePassword(password);
         }
 
         //This method delete user password
 
-        public async Task DeletePassword(int password)
+        public void DeletePassword(int password)
         {
            
-            await _repo.DeletePassword(password);
+              _repo.DeletePassword(password);
 
         }
 
         //This method get the details of a password for updating
-        public async Task<passwords> GetAPassword(int passwordID)
+        public  passwords  GetAPassword(int passwordID)
         {
 
-            return await _repo.GetAPassword(passwordID);
+            return   _repo.GetAPassword(passwordID);
 
         }
 
         //This method updatae user password
-        public async Task UpdatePassword(passwords password)
+        public void UpdatePassword(passwords password)
         {
 
-              await _repo.UpdatePassword(password);
+               _repo.UpdatePassword(password);
         }
 
         

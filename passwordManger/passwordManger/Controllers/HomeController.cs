@@ -34,7 +34,8 @@ namespace passwordManger.Controllers
         public async Task<ActionResult<indexModel>> Index()
         {
 
-            List<passwords> obj = await _services.GetPasswords();
+
+            List<passwords> obj =  _services.GetPasswords();
 
             var model = new indexModel
             {
@@ -45,9 +46,10 @@ namespace passwordManger.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateNewPassword(indexModel obj)
         {
-            await _services.CreatePassword(obj.createPassword);
+             _services.CreatePassword(obj.createPassword);
             return RedirectToAction("Index");
         }
 
@@ -55,7 +57,9 @@ namespace passwordManger.Controllers
         [HttpPost]
         public async Task<IActionResult> DeletePassword(indexModel obj)
         {
-            await _services.DeletePassword(obj.createPassword.Id);
+            
+
+             _services.DeletePassword(obj.createPassword.Id);
             return RedirectToAction("Index");
         }
 
@@ -64,17 +68,29 @@ namespace passwordManger.Controllers
         public async Task<ActionResult<passwords>> UpdatePassword(int Id)
         {
 
-            var obj = await _services.GetAPassword(Id);
+            //if (!ModelState.IsValid)
+            //{
+             //   return View(id); Not found page
+            //}
+
+            var obj =  _services.GetAPassword(Id);
            
             return View(obj);
         }
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> UpdatePassword(passwords obj)
         {
 
-            await _services.UpdatePassword(obj);
+            if (!ModelState.IsValid)
+            {
+                return View(obj);
+            }
+
+            _services.UpdatePassword(obj);
 
             return RedirectToAction("Index");
         }

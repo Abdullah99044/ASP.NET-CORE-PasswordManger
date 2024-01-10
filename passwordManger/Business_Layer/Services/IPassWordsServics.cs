@@ -10,14 +10,14 @@ namespace Business_Layer.Services
     public interface IPassWordsServics
     {
 
-        public Task<List<passwords>> GetPasswords();
+        public  List<passwords>  GetPasswords();
 
-        public Task<passwords> GetAPassword(int passwordID);
-        public Task CreatePassword(passwords password);
+        public  passwords  GetAPassword(int passwordID);
+        public void CreatePassword(passwords password);
 
-        public Task DeletePassword(int password);
+        public void DeletePassword(int password);
        
-        public Task UpdatePassword(passwords password);
+        public void UpdatePassword(passwords password);
 
     }
 }

@@ -6,59 +6,116 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-
-<h2> Store a password : </h2> 
  
-<form asp-action="CreateNewPassword" method="post">
 
-   
-        <div class="form-group">
-            <label asp-for="createPassword.Name">Name:</label>
-            <input asp-for="createPassword.Name" class="form-control" />
+
+<button id="store-password-btn" class="btn btn-primary store-password-button mt-4 mb-4">Store a password</button>
+
+ 
+<form asp-action="CreateNewPassword" method="post" id="createPasswordForm" class="hidden-form" onsubmit="validateForm(event)">
+
+
+        <div class="form-group  mt-1 ">
+
+            <label asp-for="createPassword.Name" class="form-label">Name :</label>
+            <input Id="Name" asp-for="createPassword.Name" class="form-control"  />
+            <span  Id="NameValidation" class="text-danger"></span>
+
         </div>
 
-        <div class="form-group">
-            <label asp-for="createPassword.URL">URL:</label>
-            <input asp-for="createPassword.URL" class="form-control" />
+        <div class="form-group  mt-1 ">
+
+            <label asp-for="createPassword.URL" class="form-label">URL :</label>
+            <input Id="URL" asp-for="createPassword.URL" class="form-control"   />
+            <span  Id="URLValidation" class="text-danger"></span>
+
         </div>
 
 
-        <div class="form-group">
-            <label asp-for="createPassword.PassWord">Password:</label>
-        <input asp-for="createPassword.PassWord" class="form-control" />
+
+
+
+        <div class="form-group  mt-1 ">
+
+                <label asp-for="createPassword.PassWord" class="form-label">Password :</label>
+                <input Id="PassWord" asp-for="createPassword.PassWord" class="form-control" />
+                <span Id="PassWordValidation" class="text-danger"></span>
+            
         </div>
 
-        <div class="form-group">
-            <label asp-for="createPassword.PasswordStrength">PasswordStrength:</label>
-            <input asp-for="createPassword.PasswordStrength" class="form-control" />
+        <div class="form-group  mt-1 ">
+
+            <label class="form-label">Your password strength :</label>
+            <span  style="background-color:lightgray" class="form-control" Id="PasswordStrengthValidation"> Writ your password </span>
+
         </div>
 
-        <button type="submit" class="btn btn-primary">Create</button>
-     
+        <div class="form-group row mt-4 mb-4">
+
+            <div class="col row">
+
+                <div class="form-group col row">
+
+                <div class="col  ">
+
+                    <button type="submit" class="btn btn-success custom-button  ">Submit your data</button>
+
+                        </div>
+
+                <div class="col  ">
+                    <button type="button" id="passwordGenerator" class="btn   btn-info custom-button ">Generate a password </button>
+                        </div>  
+                </div>
+
+                <div class="col">
+
+                </div>
+
+            </div>
+
+        </div>
 
 </form>
 
+
+
 <h2>Your Passwords : </h2>
 
-<table class="table">
-    <thead>
+ 
+
+    <form class="  row">
+            
+        <div class="col"> 
+            <input class="form-control  " type="search" placeholder="Search">
+        </div>
+
+        <div class="col">
+        <div>
+            
+            <button class="btn btn-info " type="submit">Search</button>
+            
+        </div>
+            
+
+        </div>
+
+    </form>
+ 
+
+<table class="table mt-4 mb-4">
+    <thead class="table-primary">
         <tr>
           
             <th>Name</th>
             <th>URL</th>
             <th>Password</th>
-            <th>PasswordStrength</th>
             <th>update your password</th>
             <th>Delete your password</th>
 
         </tr>
     </thead>
     <tbody>
+        
         @foreach (var password in Model.passwordDTOs)
         {
             <tr>
@@ -67,7 +124,7 @@
                 <td>@password.Name</td>
                 <td><a href="https://@password.URL" target="_blank">@password.URL</a></td>
                 <td>@password.PassWord </td>
-                <td>@password.PasswordStrength</td>
+                
                 <td> 
                     
                     <a asp-controller="Home" asp-action="UpdatePassword" asp-route-Id="@password.Id" class="btn btn-primary" >
@@ -80,7 +137,7 @@
 
                         <input asp-for="createPassword.Id" type="hidden" value="@password.Id" />
                         
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
 
                  </form>
                 </td>
@@ -88,3 +145,29 @@
         }
     </tbody>
 </table>
+
+ 
+
+ 
+
+<script>
+
+
+    //A fucntion that Open and close the form of the store-password-btn
+
+
+    const storePasswordButton = document.getElementById("store-password-btn");
+    const myForm = document.getElementById("createPasswordForm");
+
+    storePasswordButton.addEventListener('click', function () {
+        myForm.classList.toggle('hidden-form');
+        myForm.classList.toggle('form-show');
+        console.log("Form visibility toggled");
+    });
+
+</script>
+ 
+
+    
+
+

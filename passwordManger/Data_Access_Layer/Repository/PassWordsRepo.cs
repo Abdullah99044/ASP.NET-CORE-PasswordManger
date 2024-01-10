@@ -19,37 +19,37 @@ namespace Data_Access_Layer.Repository
             _db = db;
         }
 
-        public async Task CreatePassword(passwords password)
+        public   void CreatePassword(passwords password)
         {
              
-            await _db.passwords.AddAsync(password);
-            await _db.SaveChangesAsync();
+             _db.passwords.Add(password);
+             _db.SaveChanges();
 
         }
 
-        public async Task DeletePassword(int passwordId)
+        public  void   DeletePassword(int passwordId)
         {
 
-            var password = await _db.passwords.FindAsync(passwordId);
+            var password =   _db.passwords.Find(passwordId);
 
             _db.passwords.Remove(password);
-            _db.SaveChangesAsync();
+            _db.SaveChanges();
         }
 
-        public async Task<List<passwords>> GetAllPasswords()
+        public  List<passwords>  GetAllPasswords()
         {
-            return await _db.passwords.ToListAsync();
+            return   _db.passwords.ToList();
         }
 
-        public async Task<passwords> GetAPassword(int passwordID)
+        public  passwords  GetAPassword(int passwordID)
         {
-            return await _db.passwords.FindAsync(passwordID);
+            return   _db.passwords.Find(passwordID);
         }
 
-        public async Task UpdatePassword(passwords password)
+        public  void UpdatePassword(passwords password)
         {
             _db.passwords.Update(password);
-            await _db.SaveChangesAsync();
+             _db.SaveChanges();
         }
     }
 }
