@@ -1,4 +1,5 @@
- 
+
+
 using Business_Layer.Services;
 using Data_Access_Layer.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -25,17 +26,21 @@ namespace passwordManger.Controllers
 
         public class indexModel
         {
-            public List<passwords> passwordDTOs { get; set; }
+            public pageResponse passwordDTOs { get; set; }
             public passwords createPassword { get; set; } 
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<indexModel>> Index()
+        public async Task<ActionResult<indexModel>> Index(int page , string? search)
         {
 
+            if(page == null || page == 0)
+            {
+                page = 1;
+            }
 
-            List<passwords> obj =  _services.GetPasswords();
+            pageResponse obj =  _services.GetPasswords(page , search);
 
             var model = new indexModel
             {

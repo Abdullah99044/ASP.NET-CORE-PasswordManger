@@ -1,4 +1,5 @@
-﻿using Data_Access_Layer.Models;
+﻿
+using Data_Access_Layer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Business_Layer.Services
     public interface IPassWordsServics
     {
 
-        public  List<passwords>  GetPasswords();
+        public pageResponse GetPasswords(int page , string? search);
 
         public  passwords  GetAPassword(int passwordID);
         public void CreatePassword(passwords password);

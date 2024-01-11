@@ -75,16 +75,21 @@ function checkPasswordStrength(password){
 
 //Validate an Input and send error massage
 
-const validateInput = (value, spanName, inputName) => {
+const validateInput = (value, spanName, inputName, inputElement) => {
 
     const validationMessage = document.getElementById(spanName);
 
     if (value === "") {
+
+         
         validationMessage.textContent = `${inputName} is Required`;
+     
+
         return false;
     }
 
     validationMessage.textContent = ""; //Clear the error massage
+  
     return true;
 };
 
@@ -107,7 +112,7 @@ function validateForm(event) {
     const isValid = inputs.every(input => {
         const inputElement = document.getElementById(input.id);
         const inputValue = inputElement.value.trim();
-        return validateInput(inputValue, input.spanId, input.name);
+        return validateInput(inputValue, input.spanId, input.name, inputElement);
     });
 
     if (isValid) {

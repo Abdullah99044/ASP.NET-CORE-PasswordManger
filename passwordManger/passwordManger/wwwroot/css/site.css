@@ -30,13 +30,6 @@ body {
 }
 
 
-.navbar-text {
-    font-size: 20px; /* Adjust the font size as needed */
-}
-
-.navbar-brand-size   {
-    font-size: 30px; /* Adjust the font size as needed */
-}
 
 .custom-button {
    width: 195px;
@@ -79,7 +72,7 @@ body {
 
     .store-password-button {
         width: 150px;
-        height: 45px;
+        height: 60px;
         font-size: 16px;
     }
 }

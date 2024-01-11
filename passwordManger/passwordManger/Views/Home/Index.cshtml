@@ -18,7 +18,7 @@
         <div class="form-group  mt-1 ">
 
             <label asp-for="createPassword.Name" class="form-label">Name :</label>
-            <input Id="Name" asp-for="createPassword.Name" class="form-control"  />
+            <input Id="Name" asp-for="createPassword.Name" class="form-control "  />
             <span  Id="NameValidation" class="text-danger"></span>
 
         </div>
@@ -26,7 +26,7 @@
         <div class="form-group  mt-1 ">
 
             <label asp-for="createPassword.URL" class="form-label">URL :</label>
-            <input Id="URL" asp-for="createPassword.URL" class="form-control"   />
+        <input Id="URL" asp-for="createPassword.URL" class="form-control  " />
             <span  Id="URLValidation" class="text-danger"></span>
 
         </div>
@@ -46,7 +46,7 @@
         <div class="form-group  mt-1 ">
 
             <label class="form-label">Your password strength :</label>
-            <span  style="background-color:lightgray" class="form-control" Id="PasswordStrengthValidation"> Writ your password </span>
+            <span  style="background-color:lightgray" class="form-control" Id="PasswordStrengthValidation"> Write your password </span>
 
         </div>
 
@@ -56,14 +56,14 @@
 
                 <div class="form-group col row">
 
-                <div class="col  ">
+                        <div class="col  ">
 
-                    <button type="submit" class="btn btn-success custom-button  ">Submit your data</button>
+                            <button type="submit" class="btn btn-success custom-button  ">Submit your data</button>
 
                         </div>
 
-                <div class="col  ">
-                    <button type="button" id="passwordGenerator" class="btn   btn-info custom-button ">Generate a password </button>
+                         <div class="col  ">
+                            <button type="button" id="passwordGenerator" class="btn   btn-info custom-button ">Generate a password </button>
                         </div>  
                 </div>
 
@@ -83,40 +83,42 @@
 
  
 
-    <form class="  row">
+    <form class="  row" asp-controller="Home" asp-action="Index" method="get">
             
-        <div class="col"> 
-            <input class="form-control  " type="search" placeholder="Search">
+        <div class="col">
+            <input as class="form-control  " type="search" name="search" placeholder="Search">
         </div>
 
         <div class="col">
-        <div>
+             <div class="col">
             
-            <button class="btn btn-info " type="submit">Search</button>
-            
-        </div>
-            
+                <button class="btn btn-success " type="submit">Search</button>
 
+                <a type="button" class="btn   btn-info   "  asp-controller="Home" asp-action="Index">Disable the search</a>
+            
+            </div >
+     
         </div>
-
+         
     </form>
  
 
 <table class="table mt-4 mb-4">
+    <thead class="table-primary">
     <thead class="table-primary">
         <tr>
           
             <th>Name</th>
             <th>URL</th>
             <th>Password</th>
-            <th>update your password</th>
+            <th>Update your password</th>
             <th>Delete your password</th>
 
         </tr>
     </thead>
     <tbody>
         
-        @foreach (var password in Model.passwordDTOs)
+        @foreach (var password in Model.passwordDTOs.userPasswords)
         {
             <tr>
 
@@ -133,7 +135,7 @@
 
                 </td>
                 <td>
-                <form asp-action="DeletePassword" method="post">
+                    <form asp-action="DeletePassword" method="post" >
 
                         <input asp-for="createPassword.Id" type="hidden" value="@password.Id" />
                         
@@ -146,6 +148,36 @@
     </tbody>
 </table>
 
+ 
+
+ 
+
+<div class="pagination  btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"  >
+
+    <div class="btn-group me-2" role="group" aria-label="First group">
+
+        
+        @for (int i = 1; i <= Model.passwordDTOs.pages; i++)
+        {
+            if(i == Model.passwordDTOs.currentPage)
+            {
+                <span class="btn btn-primary " >@i</span>
+            }
+
+            else
+            {
+                <a class="btn btn-secondary"  asp-controller="home" asp-action="Index" asp-route-page=" @i">
+                    @i
+                </a>
+        
+            }
+        }
+
+       
+
+    </div>
+
+</div>
  
 
  

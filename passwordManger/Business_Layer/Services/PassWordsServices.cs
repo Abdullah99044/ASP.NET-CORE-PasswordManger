@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
- 
+
 using Data_Access_Layer.Models;
 using Data_Access_Layer.Repository;
  
@@ -23,9 +23,10 @@ namespace Business_Layer.Services
 
 
         //This method get all user passwords
-        public  List<passwords>  GetPasswords()
+        public pageResponse GetPasswords(int page , string? search)
         {
-            return   _repo.GetAllPasswords();
+            return    _repo.GetAllPasswords(page , search);  
+
         }
 
         //This method insert user password
